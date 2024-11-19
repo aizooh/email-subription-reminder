@@ -6,8 +6,8 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.utils import formataddr
 import base64
-from email.utils import formataddr 
 
 class GmailAPI:
     def __init__(self):
@@ -17,12 +17,10 @@ class GmailAPI:
 
     def authenticate(self):
         """Handle the authentication process."""
-        # Check if token.pickle exists
         if os.path.exists('token.pickle'):
             with open('token.pickle', 'rb') as token:
                 self.creds = pickle.load(token)
 
-        # If credentials are invalid or don't exist, create new ones
         if not self.creds or not self.creds.valid:
             if self.creds and self.creds.expired and self.creds.refresh_token:
                 self.creds.refresh(Request())
@@ -31,7 +29,6 @@ class GmailAPI:
                     'client_secret.json', self.SCOPES)
                 self.creds = flow.run_local_server(port=0)
 
-            # Save credentials for future use
             with open('token.pickle', 'wb') as token:
                 pickle.dump(self.creds, token)
 
@@ -124,28 +121,39 @@ class GmailAPI:
             print(f'An error occurred: {e}')
             return False, str(e)
 
+# Create an instance of GmailAPI
+gmail_api = GmailAPI()
+
+# Create the send_email function that main.py will import
+def send_email(to, name, due_date, invoice_no, amount, package_name):
+    sender = "sonitechconnections@gmail.com"
+    subject = "Service Expiry Reminder"
+    
+    success, message = gmail_api.send_email(
+        sender=sender,
+        to=to,
+        subject=subject,
+        name=name,
+        due_date=due_date,
+        invoice_no=invoice_no,
+        amount=amount,
+        package_name=package_name
+    )
+    return success, message
+
 # Example usage
-def main():
-    # Initialize the Gmail API handler
-    gmail = GmailAPI()
-
-    # Email
-    sender = "sonitechconnections@gmail.com"  # Your Gmail address
-    to = "isaackaris.52@gmail.com"
-    subject = "Test Email from Gmail API"
-    name = "John Doe"
-    due_date = "2023-12-31"
-    invoice_no = "INV12345"
-    amount = "$100"
-    package_name = "Premium"
-
-    # Send email
-    success, message = gmail.send_email(sender, to, subject, name, due_date, invoice_no, amount, package_name)
+if __name__ == '__main__':
+    # Test the function
+    success, message = send_email(
+        to="isaackaris.52@gmail.com",
+        name="John Doe",
+        due_date="2023-12-31",
+        invoice_no="INV12345",
+        amount="KES 5,000",
+        package_name="Premium Package"
+    )
     
     if success:
         print("Email sent successfully!")
     else:
         print(f"Failed to send email: {message}")
-
-if __name__ == '__main__':
-    main()
