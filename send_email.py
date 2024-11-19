@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.utils import formataddr
 import base64
+from datetime import datetime
 
 class GmailAPI:
     def __init__(self):
@@ -43,16 +44,34 @@ class GmailAPI:
         message['subject'] = subject
         message['bcc'] = sender
 
+        expiry_date = datetime.strptime(due_date, '%Y-%m-%d').date()
+        days_to_expiry = (expiry_date - datetime.now().date()).days
+
+        # Create appropriate expiry message
+        if days_to_expiry == 0:
+            expiry_message = "YOUR SERVICE EXPIRES TODAY!"
+        elif days_to_expiry == 1:
+            expiry_message = "YOUR SERVICE EXPIRES TOMORROW!"
+        elif days_to_expiry == 3:
+            expiry_message = "YOUR SERVICE EXPIRES IN 3 DAYS!"
+        elif days_to_expiry == 5:
+            expiry_message = "YOUR SERVICE EXPIRES IN 5 DAYS!"
+        else:
+            expiry_message = f"YOUR SERVICE EXPIRES IN {days_to_expiry} DAYS!"
+
         # Plain text version
         text_content = f"""
         Subject: Service Expiry Reminder
 
         Dear {name},
 
+        {expiry_message}
+
         We hope you're enjoying your internet service from Sonitech Data Connections. This is a friendly reminder that your invoice for the {package_name} package will be due soon.
         Please settle the amount of {amount} by {due_date} to ensure uninterrupted service.
 
         For any questions or assistance with payment, feel free to reach out to us.
+        Please disregard this email if you have already settled your bill.
         Note: This is a system-generated email. Please do not reply to this message.
 
         Thank you for choosing Sonitech Data Connections!
@@ -68,12 +87,15 @@ class GmailAPI:
         <body>
             <p>Dear {name},</p>
             
+            <p style="color: red; font-weight: bold;">{expiry_message}</p>
+            
             <p>We hope you're enjoying your internet service from Sonitech Data Connections. This is a friendly reminder that your invoice 
             for the {package_name} package will be due soon.</p>
             
-            <p>Please settle the amount of {amount} by {due_date} to ensure uninterrupted service.</p>
+            <p>Please settle the amount of <strong>{amount}</strong> by <strong>{due_date}</strong> to ensure uninterrupted service.</p>
             
             <p>For any questions or assistance with payment, feel free to reach out to us.</p>
+            <p>Please disregard this email if you have already settled your bill.</p>
             <p><i>Note: This is a system-generated email. Please do not reply to this message.</i></p>
             
             <p>Thank you for choosing Sonitech Data Connections!</p>
@@ -147,7 +169,7 @@ if __name__ == '__main__':
     success, message = send_email(
         to="isaackaris.52@gmail.com",
         name="John Doe",
-        due_date="2023-12-31",
+        due_date="2024-12-31",
         invoice_no="INV12345",
         amount="KES 5,000",
         package_name="Premium Package"
