@@ -3,7 +3,8 @@ token.pickle
 client_secret.json
 .env.txt
 .env
-client_secret.json
+.json
+*.txt
 
 # Python
 __pycache__/
@@ -12,6 +13,7 @@ __pycache__/
 *.so
 .Python
 env/
+*.txt
 build/
 develop-eggs/
 dist/
