@@ -5,51 +5,41 @@ on:
     - cron: "0 8 * * *" # Runs daily at 8 AM UTC
   workflow_dispatch: # Allows manual trigger
 
-  jobs:
-  send-reminders:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.9"
-
-      # Remove the step for installing pywin32 (if not needed)
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip setuptools wheel
-      #     pip install --no-cache-dir -r requirements.txt || pip install -r requirements.txt --no-deps
-
-      # ... rest of the steps
 jobs:
   send-reminders:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Keep using Ubuntu for now, adjust if switching to matrix strategy later
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: "3.9" # Use Python 3.9, adjust as needed (ensure compatibility with dependencies)
 
-      - name: Install dependencies
+      - name: Check Python version
+        run: python --version # Verify the Python version installed in the runner
+
+      - name: Create and activate virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate  # Use the appropriate activation command for Ubuntu (Linux)
+
+      - name: Upgrade pip and install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install --no-cache-dir -r requirements.txt || pip install -r requirements.txt --no-deps
 
       - name: List installed packages
         run: |
-          pip list
+          pip list  # Confirm that the required packages are installed
 
       - name: Create credentials file
         run: |
-          echo "${{ secrets.GMAIL_CREDENTIALS }}" > client_secret.json
+          echo "${{ secrets.GMAIL_CREDENTIALS }}" > client_secret.json  # Store Gmail credentials from secrets
 
-      - name: Run script
+      - name: Run the script
         env:
-          SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python main.py
+          SHEET_ID: ${{ secrets.SHEET_ID }} # Pass the secret for Google Sheets ID
+        run: python main.py # Run the main Python script
