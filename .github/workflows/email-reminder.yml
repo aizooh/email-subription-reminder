@@ -38,3 +38,6 @@ jobs:
         env:
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: python main.py
+
+      - name: Run email test
+        run: python test_email.py
