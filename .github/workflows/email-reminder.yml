@@ -40,4 +40,4 @@ jobs:
         run: python main.py
 
       - name: Run email test
-        run: python test_email.py
+        run: python test_emails.py
