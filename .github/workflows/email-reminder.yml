@@ -2,7 +2,7 @@ name: Email Reminder Service
 
 on:
   schedule:
-    - cron: "0 6 * * *" # Runs daily at 8 AM UTC
+    - cron: "0 8 * * *" # Runs daily at 8 AM UTC
   workflow_dispatch: # Allows manual trigger
 
 jobs:
@@ -15,12 +15,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.x"
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt
 
       - name: Create credentials file
         run: |
