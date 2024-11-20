@@ -4,7 +4,7 @@ name: Email Reminder Service
 
 on:
   schedule:
-    - cron: "0 8 * * *" # Runs daily at 8 AM UTC
+    - cron: "0 5 * * *" # Runs daily at 8 AM UTC
   workflow_dispatch: # Allows manual trigger
 
 jobs:
