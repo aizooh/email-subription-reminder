@@ -11,20 +11,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3 # Updated to v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3 # Updated to v3
         with:
-          python-version: "3.8" # Use Python 3.9, adjust as needed (ensure compatibility with dependencies)
+          python-version: "3.9" # Ensure Python version is compatible
 
       - name: Check Python version
-        run: python --version # Verify the Python version installed in the runner
+        run: python --version # Verify Python version
 
       - name: Create and activate virtual environment
         run: |
           python -m venv venv
-          source venv/bin/activate  # Use the appropriate activation command for Ubuntu (Linux)
+          source venv/bin/activate  # Use appropriate activation command for Ubuntu (Linux)
 
       - name: Upgrade pip and install dependencies
         run: |
@@ -33,13 +33,13 @@ jobs:
 
       - name: List installed packages
         run: |
-          pip list  # Confirm that the required packages are installed
+          pip list  # List installed packages to confirm installation
 
       - name: Create credentials file
         run: |
-          echo "${{ secrets.GMAIL_CREDENTIALS }}" > client_secret.json  # Store Gmail credentials from secrets
+          echo "${{ secrets.GMAIL_CREDENTIALS }}" > client_secret.json  # Store Gmail credentials
 
       - name: Run the script
         env:
-          SHEET_ID: ${{ secrets.SHEET_ID }} # Pass the secret for Google Sheets ID
-        run: python main.py # Run the main Python script
+          SHEET_ID: ${{ secrets.SHEET_ID }} # Pass Google Sheets ID as an environment variable
+        run: python main.py # Run the script
