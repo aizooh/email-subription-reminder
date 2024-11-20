@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9" # Use Python 3.9, adjust as needed (ensure compatibility with dependencies)
+          python-version: "3.10" # Use Python 3.9, adjust as needed (ensure compatibility with dependencies)
 
       - name: Check Python version
         run: python --version # Verify the Python version installed in the runner
