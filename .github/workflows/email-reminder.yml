@@ -11,17 +11,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 # Updated to v3
+        uses: actions/checkout@v4 # Updated to v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4 # Updated to v4
+        uses: actions/setup-python@v5 # Updated to v5
         with:
           python-version: "3.9" # Ensure Python version is compatible
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3 # Updated to v3
+        uses: actions/setup-node@v4 # Updated to v4
         with:
-          node-version: "16" # Ensure Node.js version is compatible
+          node-version: "20" # Using Node 20
 
       - name: Install dependencies
         run: |
