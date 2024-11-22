@@ -28,7 +28,7 @@ def query_data_and_send_email(df):
         # Send email if it's 0, 1, 3, or 5 days before expiry
         if days_to_expiry in [0, 1, 3, 5]:
             success, _ = send_email(
-                to=row['Email'],
+               to=row['Email address'],
                 name=row['Name'],
                 due_date=row['Service expiry date:'].strftime('%Y-%m-%d'),
                 invoice_no=row.get('Invoice_no', 'N/A'),
@@ -169,12 +169,12 @@ class ReminderSystem:
                     }.get(days_to_expiry, "")
 
                     success, _ = send_email(
-                        to=row['Email'],
-                        name=row['Name'],
-                        due_date=row['Service expiry date:'].strftime('%Y-%m-%d'),
-                        invoice_no=row.get('Invoice_no', 'N/A'),
-                        amount=row['Amount'],
-                        package_name=row['Package_Name'],
+                        to=row['Email address'],
+                name=row['Name'],
+                due_date=row['Service expiry date:'].strftime('%Y-%m-%d'),
+                invoice_no=row.get('Invoice_no', 'N/A'),
+                amount=row['Amount'],
+                package_name=row['Package_Name'],
                         expiry_message=expiry_message
                     )
                     
