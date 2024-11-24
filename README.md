@@ -1,8 +1,4 @@
-Here’s a simple and clear **README.md** file for your email reminder script:
-
----
-
-**# Email Reminder Script**
+**Email Reminder Script**
 
 This Python script automates the sending of email reminders, such as service expiry notifications or invoice reminders, using the SMTP protocol. It supports both plain-text and HTML content for the email body.
 
