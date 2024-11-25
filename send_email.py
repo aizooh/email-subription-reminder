@@ -67,8 +67,8 @@ class GmailAPI:
 
         {expiry_message}
 
-        We hope you're enjoying your internet service from Sonitech Data Connections. This is a friendly reminder that your invoice for the {package_name} package will be due soon.
-        Please settle the amount of {amount} by {due_date} to ensure uninterrupted service.
+        We hope you're enjoying your internet service from <em><strong>Sonitech Data Connections.</strong></em> This is a friendly reminder that your invoice for the {package_name} package will be due soon.
+        Please settle the amount of <strong>{amount}</strong> by <strong>{due_date}</strong> to ensure uninterrupted service.
 
         For any questions or assistance with payment, feel free to reach out to us.
         Please disregard this email if you have already settled your bill.
