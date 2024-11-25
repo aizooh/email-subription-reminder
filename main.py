@@ -169,8 +169,8 @@ class ReminderSystem:
                     }.get(days_to_expiry, "")
 
                     success, _ = send_email(
-                        to=row['Email address'],
-                name=row['Name'],
+                        to=row['Email Address:'],
+                name=row['Name:'],
                 due_date=row['Service expiry date:'].strftime('%Y-%m-%d'),
                 invoice_no=row.get('Invoice_no', 'N/A'),
                 amount=row['Amount'],
