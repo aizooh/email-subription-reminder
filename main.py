@@ -51,7 +51,7 @@ def main():
         return
 
     sheet_id = os.getenv('SHEET_ID')
-    sheet_name = 'customer_info'
+    sheet_name = 'sheet1'
     
     url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
     
