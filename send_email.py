@@ -67,7 +67,7 @@ class GmailAPI:
 
         {expiry_message}
 
-        We hope you're enjoying your internet service from <em><strong>Sonitech Data Connections.</strong></em> This is a friendly reminder that your invoice for the {package_name} package will be due soon.
+        We hope you're enjoying your internet service from <em><strong>Sonitech Connections.</strong></em> This is a friendly reminder that your invoice for the {package_name} package will be due soon.
         Please settle the amount of <strong>{amount}</strong> by <strong>{due_date}</strong> to ensure uninterrupted service.
 
         For any questions or assistance with payment, feel free to reach out to us.
@@ -89,7 +89,7 @@ class GmailAPI:
             
             <p style="color: red; font-weight: bold;">{expiry_message}</p>
             
-            <p>We hope you're enjoying your internet service from Sonitech Data Connections. This is a friendly reminder that your invoice 
+            <p>We hope you're enjoying your internet service from Sonitech Connections. This is a friendly reminder that your invoice 
             for the {package_name} package will be due soon.</p>
             
             <p>Please settle the amount of <strong>{amount}</strong> by <strong>{due_date}</strong> to ensure uninterrupted service.</p>
@@ -98,7 +98,7 @@ class GmailAPI:
             <p>Please disregard this email if you have already settled your bill.</p>
             <p><i>Note: This is a system-generated email. Please do not reply to this message.</i></p>
             
-            <p>Thank you for choosing Sonitech Data Connections!</p>
+            <p>Thank you for choosing Sonitech Connections!</p>
             
             <p>Best regards,<br>
             Sonitech Data Connections<br>
