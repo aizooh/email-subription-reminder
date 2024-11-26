@@ -200,6 +200,3 @@ def main():
     reminder_system = ReminderSystem()
     emails_sent = reminder_system.process_reminders()
     print(f"Total emails sent: {emails_sent}")
-
-if __name__ == "__main__":
-    main()
