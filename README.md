@@ -89,5 +89,3 @@ send_email(
 This script is open-source and free to use for personal and commercial purposes.
 
 --- 
-
-Let me know if you need adjustments or additional sections!
