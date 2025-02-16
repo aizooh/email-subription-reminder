@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, time
 
 # Get sheet ID from environment variable
 sheet_id = os.getenv('SHEET_ID')
-sheet_name = 'customer_info'
+sheet_name = 'Copy of customer_info'
 
 url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
 
