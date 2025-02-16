@@ -86,7 +86,7 @@ from google.auth.transport.requests import Request
 class ReminderSystem:
     def __init__(self):
         self.sheet_id = os.getenv('SHEET_ID')
-        self.sheet_name = 'customer_info'
+        self.sheet_name = 'Copy of customer_info'
         self.SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
         self.creds = None
         self.reminder_days = [5, 3, 1, 0]  # Days before expiry to send reminders
