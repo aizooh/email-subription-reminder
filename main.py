@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, time
 
 # Get sheet ID from environment variable
 sheet_id = os.getenv('SHEET_ID')
-sheet_name = 'Copy of customer_info'
+sheet_name = 'new'
 
 url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
 
@@ -86,7 +86,7 @@ from google.auth.transport.requests import Request
 class ReminderSystem:
     def __init__(self):
         self.sheet_id = os.getenv('SHEET_ID')
-        self.sheet_name = 'Copy of customer_info'
+        self.sheet_name = 'new'
         self.SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
         self.creds = None
         self.reminder_days = [5, 3, 1, 0]  # Days before expiry to send reminders
